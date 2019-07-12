@@ -2,7 +2,7 @@ A simple, highly customisable SVG star rating component for React
 
 ### Demo
 
-![example](./example.png)
+![example](https://res.cloudinary.com/daqk5u0dg/image/upload/v1563327344/example.png)
 
 [code sandbox](https://codesandbox.io/s/0py2xq5zvv)
 ## Features:

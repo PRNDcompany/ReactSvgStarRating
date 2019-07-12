@@ -1,8 +1,8 @@
 {
   "name": "react-svg-star-rating",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The React component for star rating",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "build:dev": "NODE_ENV=development webpack --display-chunks",
@@ -60,5 +60,14 @@
     "rate",
     "input",
     "typescript"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PRNDcompany/ReactSvgStarRating.git"
+  },
+  "homepage": "https://github.com/PRNDcompany/ReactSvgStarRating",
+  "bugs": {
+    "url": "https://github.com/PRNDcompany/ReactSvgStarRating/issues",
+    "email": "nick@prnd.co.kr"
+  }
 }
