@@ -1,0 +1,64 @@
+{
+  "name": "react-svg-star-rating",
+  "version": "1.0.1",
+  "description": "The React component for star rating",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build:dev": "NODE_ENV=development webpack --display-chunks",
+    "build": "NODE_ENV=production webpack --display-chunks",
+    "start": "webpack-dev-server",
+    "prepublishOnly": "yarn build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@babel/runtime": "^7.4.3",
+    "@types/classnames": "^2.2.7",
+    "@types/react": "^16.8.12",
+    "@types/react-dom": "^16.8.3",
+    "@types/lodash": "^4.14.123",
+    "babel-loader": "^8.0.5",
+    "clean-webpack-plugin": "^2.0.1",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^4.0.0-beta.5",
+    "mini-css-extract-plugin": "^0.6.0",
+    "node-sass": "^4.11.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "terser-webpack-plugin": "^1.2.3",
+    "ts-loader": "^5.3.3",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^3.4.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.11"
+  },
+  "peerDependencies": {
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "author": "nick-prnd <nick@prnd.co.kr>",
+  "keywords": [
+    "react",
+    "component",
+    "svg",
+    "star",
+    "rating",
+    "rate",
+    "input",
+    "typescript"
+  ]
+}

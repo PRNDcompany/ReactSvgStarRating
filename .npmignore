@@ -1,0 +1,12 @@
+.idea
+.DS_Store
+.gitignore
+.DS_Store
+src
+types
+public
+config
+webpack.config.js
+tsconfig.json
+yarn-error.log
+example
