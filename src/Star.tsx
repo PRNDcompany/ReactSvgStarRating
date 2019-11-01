@@ -1,4 +1,4 @@
-import React, {useState, useEffect, SyntheticEvent} from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { uniqueId } from 'lodash';
 import classNames from 'classnames';
 import styles from './Star.scss';
@@ -9,9 +9,9 @@ interface StarProps {
   rightColor: string;
   innerRadius: number;
   outerRadius: number;
-  handleStarMouseMove: (e: number, index: number) => void;
+  handleStarMouseMove: (offsetX: number, index: number) => void;
   handleMouseOut: () => void;
-  handleStarClick: () => void;
+  handleStarClick: (index: number) => void;
   strokeLinejoin: "miter" | "round";
   strokeLinecap: "butt" | "round";
   className?: string;
@@ -49,9 +49,11 @@ const Star: React.FC<StarProps> = ({
     points.push(center - radius * Math.cos(i * angle) + STROKE_WIDTH);
   }
 
-  const handleMouseMove = (e: SyntheticEvent<SVGElement, MouseEvent>, index: number) => {
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     handleStarMouseMove(e.nativeEvent.offsetX, index);
   };
+
+  const handleClick = () => handleStarClick(index);
 
   return (
     <svg
@@ -60,9 +62,9 @@ const Star: React.FC<StarProps> = ({
       width={size}
       height={size}
       viewBox={`0 0 120 120`}
-      onMouseMove={(e) => handleMouseMove(e, index)}
+      onMouseMove={handleMouseMove}
       onMouseOut={handleMouseOut}
-      onClick={handleStarClick}
+      onClick={handleClick}
     >
       <defs>
         <linearGradient id={id} x1="0" x2="100%" y1="0" y2="0">
@@ -83,4 +85,4 @@ const Star: React.FC<StarProps> = ({
   );
 };
 
-export default Star;
+export default memo(Star);

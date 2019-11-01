@@ -1,11 +1,17 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, { useState, useCallback, useEffect, memo } from 'react';
 import Star from './Star';
+
+export enum DEFAULT_COLORS {
+  DEFAULT_COLOR = '#ddd',
+  DEFAULT_ACTIVE_COLOR = '#ffd055',
+  DEFAULT_HOVER_COLOR = '#ffebb7',
+}
 
 interface StarRatingProps {
   size?: number;
   count?: number;
-  activeColor?: string;
-  hoverColor?: string;
+  activeColor?: DEFAULT_COLORS | string;
+  hoverColor?: DEFAULT_COLORS | string;
   innerRadius?: number;
   outerRadius?: number;
   isHalfRating?: boolean;
@@ -17,16 +23,13 @@ interface StarRatingProps {
   containerClassName?: string;
 }
 
-const DEFAULT_COLOR = '#ddd';
-const DEFAULT_ACTIVE_COLOR = '#ffd055';
-const DEFAULT_HOVER_COLOR = '#ffebb7';
 const StarRating: React.FC<StarRatingProps> = ({
                                                  size = 30,
                                                  count = 5,
                                                  innerRadius = 25,
                                                  outerRadius = 50,
-                                                 activeColor = DEFAULT_ACTIVE_COLOR,
-                                                 hoverColor = DEFAULT_HOVER_COLOR,
+                                                 activeColor = DEFAULT_COLORS.DEFAULT_ACTIVE_COLOR,
+                                                 hoverColor = DEFAULT_COLORS.DEFAULT_HOVER_COLOR,
                                                  isHalfRating = false,
                                                  roundedCorner = true,
                                                  handleOnClick = () => {},
@@ -43,16 +46,19 @@ const StarRating: React.FC<StarRatingProps> = ({
   const [isLeftSideHover, setIsLeftSideHover] = useState<boolean>(false);
 
   useEffect(() => {
-    if(initialRating !== 0) {
+    if (initialRating !== 0) {
       setSelectedRating(initialRating);
-      const defaultIndex = initialRating % 1 === 0 ? initialRating - 1 : Math.floor(initialRating);
+      const defaultIndex = initialRating % 1 === 0
+          ? initialRating - 1
+          : Math.floor(initialRating);
       setSelectedStarIndex(defaultIndex);
     }
   }, []);
 
   const handleStarMouseMove = useCallback((offsetX: number, index) => {
-    if(isReadOnly)
+    if (isReadOnly) {
       return;
+    }
 
     if (isHalfRating) {
       const isLeftSide = offsetX < Math.floor(size / 2);
@@ -65,22 +71,24 @@ const StarRating: React.FC<StarRatingProps> = ({
   }, [currentRating, currentHoverStarIndex]);
 
   const handleMouseOut = useCallback(() => {
-    if(isReadOnly)
+    if (isReadOnly) {
       return;
+    }
 
     setCurrentHoverStarIndex(-1);
   }, [currentHoverStarIndex]);
 
   const handleStarClick = useCallback((index: number) => {
-    if(isReadOnly)
+    if (isReadOnly) {
       return;
+    }
 
     handleOnClick(currentRating);
     setSelectedRating(currentRating);
     setSelectedStarIndex(index);
   }, [currentRating]);
 
-  const getLeftColor = (index: number) => {
+  const getLeftColor = (index: number): DEFAULT_COLORS | string => {
     if (index <= selectedStarIndex && index <= currentHoverStarIndex) {
       return hoverColor;
     } else if (index >= selectedStarIndex && index <= currentHoverStarIndex) {
@@ -89,14 +97,15 @@ const StarRating: React.FC<StarRatingProps> = ({
       return hoverColor;
     } else if (index <= selectedStarIndex) {
       return activeColor;
-    } else {
-      return DEFAULT_COLOR;
     }
+
+    return DEFAULT_COLORS.DEFAULT_COLOR;
   };
 
-  const getRightColor = (index: number) => {
+  const getRightColor = (index: number): DEFAULT_COLORS | string => {
     const isHover = currentHoverStarIndex === index;
     const isSelected = selectedStarIndex === index;
+
     if (isHalfRating) {
       if (isHover) {
         return getHoverRightColor(index);
@@ -105,29 +114,37 @@ const StarRating: React.FC<StarRatingProps> = ({
       } else {
         return getLeftColor(index);
       }
-    } else {
-      return getLeftColor(index);
     }
+
+    return getLeftColor(index);
   };
 
-  const getHoverRightColor = (index: number) => {
+  const getHoverRightColor = (index: number): DEFAULT_COLORS | string => {
     const isHalfSelectedHover = selectedRating % 1 === 0.5 && selectedStarIndex === index;
+
     if (isLeftSideHover) {
-      return isHalfSelectedHover ? DEFAULT_COLOR : index <= selectedStarIndex ? activeColor : DEFAULT_COLOR;
-    } else {
-      return isHalfSelectedHover ? activeColor : getLeftColor(index);
+      if (!isHalfSelectedHover && index > selectedRating) {
+        return activeColor;
+      }
+
+      return DEFAULT_COLORS.DEFAULT_COLOR;
     }
+
+    return isHalfSelectedHover
+        ? activeColor
+        : getLeftColor(index);
   };
 
-  const getSelectedRightColor = (index: number) => {
+  const getSelectedRightColor = (index: number): DEFAULT_COLORS | string => {
     const isHalfSelected = selectedRating % 1 === 0.5;
+
     if (selectedStarIndex < currentHoverStarIndex && isHalfSelected) {
       return activeColor;
     } else if (isHalfSelected) {
-      return DEFAULT_COLOR;
-    } else {
-      return getLeftColor(index);
+      return DEFAULT_COLORS.DEFAULT_COLOR;
     }
+
+    return getLeftColor(index);
   };
 
   return (
@@ -143,7 +160,7 @@ const StarRating: React.FC<StarRatingProps> = ({
           rightColor={getRightColor(i)}
           handleStarMouseMove={handleStarMouseMove}
           handleMouseOut={handleMouseOut}
-          handleStarClick={() => handleStarClick(i)}
+          handleStarClick={handleStarClick}
           strokeLinejoin={roundedCorner ? 'round' : 'miter'}
           strokeLinecap={roundedCorner ? 'round' : 'butt'}
           className={starClassName}
@@ -153,4 +170,4 @@ const StarRating: React.FC<StarRatingProps> = ({
   );
 };
 
-export default StarRating;
+export default memo(StarRating);
