@@ -13,7 +13,8 @@ interface StarRatingProps {
   roundedCorner?: boolean;
   isReadOnly?: boolean;
   initialRating?: number;
-  className?: string;
+  starClassName?: string;
+  containerClassName?: string;
 }
 
 const DEFAULT_COLOR = '#ddd';
@@ -31,7 +32,8 @@ const StarRating: React.FC<StarRatingProps> = ({
                                                  handleOnClick = () => {},
                                                  isReadOnly = false,
                                                  initialRating = 0,
-                                                 className,
+                                                 starClassName = '',
+                                                 containerClassName = ''
                                                }) => {
 
   const [currentRating, setCurrentRating] = useState<number>(0);
@@ -129,7 +131,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <div>
+    <div className={containerClassName}>
       {Array.from({length: count}, (v, i) =>
         <Star
           key={i}
@@ -144,9 +146,9 @@ const StarRating: React.FC<StarRatingProps> = ({
           handleStarClick={() => handleStarClick(i)}
           strokeLinejoin={roundedCorner ? 'round' : 'miter'}
           strokeLinecap={roundedCorner ? 'round' : 'butt'}
-          className={className}
-        />)
-      }
+          className={starClassName}
+        />
+      )}
     </div>
   );
 };

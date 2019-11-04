@@ -44,7 +44,8 @@ You can then use the following markup in your project:
 | handleOnClick  | (rating: number) => {} | Returns the rating value. | undefined |
 | isReadOnly  | boolean | When set to true, the rating cannot to be edited. | false |
 | initialRating  | number | The initial rating value. | 0 |
-| className  | string | A css class name to style each star. | '' |
+| containerClassName  | string | A css class name to style star container. | '' |
+| starClassName  | string | A css class name to style each star. | '' |
 
 
 ## License 
