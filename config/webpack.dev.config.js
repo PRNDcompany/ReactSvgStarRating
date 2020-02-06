@@ -5,7 +5,11 @@ const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin/lib/index
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: resolve('./src/index.dev.tsx'),
+  entry: resolve('./src/example/index.tsx'),
+  output: {
+    filename: 'site/index.js',
+    publicPath: '/',
+  },
   module: {
     rules: [
       {
@@ -49,9 +53,5 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: resolve('./public/index.html')
     }),
-  ],
-  devServer: {
-    inline: false,
-    contentBase: resolve('./src')
-  }
+  ]
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import StarRating from './StarRating';
-import styles from './index.dev.scss';
+import StarRating from '../StarRating';
+import styles from './index.scss';
 
 const App = () => {
 

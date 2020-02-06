@@ -88,9 +88,5 @@ module.exports = {
     plugins: [
       new TsconfigPathsPlugin({configFile: resolve('./tsconfig.json')})
     ]
-  },
-  devServer: {
-    inline: false,
-    contentBase: resolve('./src')
   }
 };
