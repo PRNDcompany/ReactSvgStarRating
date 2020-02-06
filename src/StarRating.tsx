@@ -1,4 +1,6 @@
 import React, {useState, useCallback, useEffect} from 'react';
+import classNames from 'classNames';
+import styles from './StarRating.scss';
 import Star from './Star';
 
 interface StarRatingProps {
@@ -131,7 +133,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <div className={containerClassName}>
+    <div className={classNames(styles.container, containerClassName)}>
       {Array.from({length: count}, (v, i) =>
         <Star
           key={i}

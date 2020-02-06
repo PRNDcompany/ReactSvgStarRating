@@ -17,6 +17,7 @@ const App = () => {
         isReadOnly={true}
         initialRating={4.5}
         starClassName={styles.customStar}
+        containerClassName={styles.container}
       />
       <StarRating
         handleOnClick={handleOnClick}
