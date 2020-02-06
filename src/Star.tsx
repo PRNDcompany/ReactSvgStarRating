@@ -1,7 +1,6 @@
-import React, {useState, useEffect, SyntheticEvent} from 'react';
-import { uniqueId } from 'lodash';
-import classNames from 'classnames';
-import styles from './Star.scss';
+import React, {SyntheticEvent, useEffect, useState} from 'react';
+import {uniqueId} from 'lodash';
+
 interface StarProps {
   index: number;
   size: number;
@@ -36,6 +35,7 @@ const Star: React.FC<StarProps> = ({
                                      isReadOnly
                                    }) => {
   const [id, setId] = useState<string>('');
+  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
     setId(uniqueId())
@@ -51,19 +51,41 @@ const Star: React.FC<StarProps> = ({
     points.push(center - radius * Math.cos(i * angle) + STROKE_WIDTH);
   }
 
-  const handleMouseMove = (e: SyntheticEvent<SVGElement, MouseEvent>, index: number) => {
+  const onMouseMove = (e: SyntheticEvent<SVGElement, MouseEvent>, index: number) => {
     handleStarMouseMove(e.nativeEvent.offsetX, index);
+    setIsHover(true);
   };
 
+  const onMouseOut = () => {
+    {
+      handleMouseOut();
+      setIsHover(false);
+    }
+  };
+
+  const getStarStyle = () => {
+    if(isReadOnly) {
+      return {
+        cursor: 'default',
+      }
+    }
+
+    if(isHover) {
+      return {
+        transform: 'scale(1.15)'
+      }
+    }
+  };
   return (
     <svg
-      className={classNames(styles.star, isReadOnly ? styles.readOnly : '', className)}
+      style={{transition: 'transform 0.1s ease-out', cursor: 'pointer', ...getStarStyle()}}
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}
       viewBox={`0 0 120 120`}
-      onMouseMove={(e) => handleMouseMove(e, index)}
-      onMouseOut={handleMouseOut}
+      onMouseMove={(e) => onMouseMove(e, index)}
+      onMouseOut={onMouseOut}
       onClick={handleStarClick}
     >
       <defs>

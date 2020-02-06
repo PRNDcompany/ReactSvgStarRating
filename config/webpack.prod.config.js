@@ -12,7 +12,6 @@ module.exports = {
   output: {
     libraryTarget: 'umd',
     filename: 'index.js',
-    publicPath: '/',
     globalObject: 'this'
   },
   optimization: {
