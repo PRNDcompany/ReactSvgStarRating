@@ -41,7 +41,7 @@ You can then use the following markup in your project:
 | hoverColor?  | string | The color of the hover potion of star.  | '#ffebb7' |
 | emptyColor?  | string | The color of empty star | '' |
 | isHalfRating?  | boolean | When set to true, the rating unit is changed to half star. | false |
-| roundedCorner?  | boolean | Whether or not to round the star's corner | false |
+| roundedCorner?  | boolean | Whether or not to round the star's corner | true |
 | handleOnClick?  | (rating: number) => {} | Returns the rating value. | undefined |
 | isReadOnly?  | boolean | When set to true, the rating cannot to be edited. | false |
 | initialRating?  | number | The initial rating value. | 0 |
