@@ -15,6 +15,7 @@ interface StarProps {
   strokeLinejoin: "miter" | "round";
   strokeLinecap: "butt" | "round";
   className?: string;
+  isReadOnly: boolean;
 }
 
 const NUM_POINT = 5;
@@ -31,7 +32,8 @@ const Star: React.FC<StarProps> = ({
                                      handleStarClick,
                                      strokeLinejoin,
                                      strokeLinecap,
-                                     className = ''
+                                     className = '',
+                                     isReadOnly
                                    }) => {
   const [id, setId] = useState<string>('');
 
@@ -55,7 +57,7 @@ const Star: React.FC<StarProps> = ({
 
   return (
     <svg
-      className={classNames(styles.star, className)}
+      className={classNames(styles.star, isReadOnly ? styles.readOnly : '', className)}
       xmlns="http://www.w3.org/2000/svg"
       width={size}
       height={size}

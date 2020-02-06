@@ -8,6 +8,7 @@ interface StarRatingProps {
   count?: number;
   activeColor?: string;
   hoverColor?: string;
+  emptyColor?: string;
   innerRadius?: number;
   outerRadius?: number;
   isHalfRating?: boolean;
@@ -19,7 +20,6 @@ interface StarRatingProps {
   containerClassName?: string;
 }
 
-const DEFAULT_COLOR = '#ddd';
 const DEFAULT_ACTIVE_COLOR = '#ffd055';
 const DEFAULT_HOVER_COLOR = '#ffebb7';
 const StarRating: React.FC<StarRatingProps> = ({
@@ -35,7 +35,8 @@ const StarRating: React.FC<StarRatingProps> = ({
                                                  isReadOnly = false,
                                                  initialRating = 0,
                                                  starClassName = '',
-                                                 containerClassName = ''
+                                                 containerClassName = '',
+                                                 emptyColor='#ddd'
                                                }) => {
 
   const [currentRating, setCurrentRating] = useState<number>(0);
@@ -92,7 +93,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     } else if (index <= selectedStarIndex) {
       return activeColor;
     } else {
-      return DEFAULT_COLOR;
+      return emptyColor;
     }
   };
 
@@ -115,7 +116,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   const getHoverRightColor = (index: number) => {
     const isHalfSelectedHover = selectedRating % 1 === 0.5 && selectedStarIndex === index;
     if (isLeftSideHover) {
-      return isHalfSelectedHover ? DEFAULT_COLOR : index <= selectedStarIndex ? activeColor : DEFAULT_COLOR;
+      return isHalfSelectedHover ? emptyColor : index <= selectedStarIndex ? activeColor : emptyColor;
     } else {
       return isHalfSelectedHover ? activeColor : getLeftColor(index);
     }
@@ -126,7 +127,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     if (selectedStarIndex < currentHoverStarIndex && isHalfSelected) {
       return activeColor;
     } else if (isHalfSelected) {
-      return DEFAULT_COLOR;
+      return emptyColor;
     } else {
       return getLeftColor(index);
     }
@@ -149,6 +150,7 @@ const StarRating: React.FC<StarRatingProps> = ({
           strokeLinejoin={roundedCorner ? 'round' : 'miter'}
           strokeLinecap={roundedCorner ? 'round' : 'butt'}
           className={starClassName}
+          isReadOnly={isReadOnly}
         />
       )}
     </div>

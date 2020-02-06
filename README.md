@@ -33,19 +33,20 @@ You can then use the following markup in your project:
 
 | Prop  | Type | Description | Default |
 | ------------- |------------- | ------------- |-------------|
-| size  | number | The size of each star | 30
-| count  | number | The number of star| 5 |
-| innerRadius  | number | The inner radius of star, this is used to customize star shape. (max: 50) | 25 |
-| outerRadius | number | The outer radius of star, this is used to customize star shape. (max: 50) | 50 |
-| activeColor  | string | The color of the active portion of star.  | '#ffd055' |
-| hoverColor  | string | The color of the hover potion of star.  | '#ffebb7' |
-| isHalfRating  | boolean | When set to true, the rating unit is changed to half star. | false |
-| roundedCorner  | boolean | Whether or not to round the star's corner | false |
-| handleOnClick  | (rating: number) => {} | Returns the rating value. | undefined |
-| isReadOnly  | boolean | When set to true, the rating cannot to be edited. | false |
-| initialRating  | number | The initial rating value. | 0 |
-| containerClassName  | string | A css class name to style star container. | '' |
-| starClassName  | string | A css class name to style each star. | '' |
+| size?  | number | The size of each star | 30
+| count?  | number | The number of star| 5 |
+| innerRadius?  | number | The inner radius of star, this is used to customize star shape. (max: 50) | 25 |
+| outerRadius? | number | The outer radius of star, this is used to customize star shape. (max: 50) | 50 |
+| activeColor?  | string | The color of the active portion of star.  | '#ffd055' |
+| hoverColor?  | string | The color of the hover potion of star.  | '#ffebb7' |
+| emptyColor?  | string | The color of empty star | '' |
+| isHalfRating?  | boolean | When set to true, the rating unit is changed to half star. | false |
+| roundedCorner?  | boolean | Whether or not to round the star's corner | false |
+| handleOnClick?  | (rating: number) => {} | Returns the rating value. | undefined |
+| isReadOnly?  | boolean | When set to true, the rating cannot to be edited. | false |
+| initialRating?  | number | The initial rating value. | 0 |
+| containerClassName?  | string | A css class name to style star container. | '' |
+| starClassName?  | string | A css class name to style each star. | '' |
 
 
 ## License 

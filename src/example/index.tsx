@@ -22,6 +22,7 @@ const App = () => {
       <StarRating
         handleOnClick={handleOnClick}
         isHalfRating={true}
+        containerClassName={styles.container}
       />
     </>
   )

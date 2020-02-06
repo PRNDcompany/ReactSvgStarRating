@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "baseUrl": ".",
-    "module": "commonjs",
+    "module": "es6",
     "lib": ["dom", "esnext"],
     "jsx": "react",
     "strict": true,
