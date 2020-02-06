@@ -1,11 +1,8 @@
 {
   "name": "react-svg-star-rating",
-  "version": "1.1.42",
+  "version": "1.1.43",
   "description": "The React component for star rating",
   "main": "dist/index.js",
-  "files": [
-    "dist/index.js"
-  ],
   "license": "MIT",
   "scripts": {
     "build": "NODE_ENV=production webpack --display-chunks",
