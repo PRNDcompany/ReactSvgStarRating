@@ -5,9 +5,9 @@
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "build:dev": "NODE_ENV=development webpack --display-chunks",
+    "build:site": "NODE_ENV=site webpack --display-chunks",
     "build": "NODE_ENV=production webpack --display-chunks",
-    "start": "webpack-dev-server",
+    "start": "NODE_ENV=development webpack-dev-server",
     "prepublishOnly": "yarn build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

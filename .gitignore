@@ -3,4 +3,5 @@ node_modules
 yarn-error.log
 .idea/
 dist
+site/
 yarn-error.log
