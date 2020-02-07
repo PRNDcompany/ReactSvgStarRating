@@ -4,7 +4,7 @@ A simple, highly customisable SVG star rating component for React
 
 ![example](https://res.cloudinary.com/daqk5u0dg/image/upload/v1563327344/example.png)
 
-[code sandbox](https://codesandbox.io/s/0py2xq5zvv)
+[code sandbox](https://codesandbox.io/s/prod-brook-z84ko)
 ## Features:
 - SVG 
 - Customisable star shape.
