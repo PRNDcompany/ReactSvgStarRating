@@ -12,8 +12,8 @@ const App = () => {
   return (
     <>
       <StarRating
+        size={10}
         handleOnClick={handleOnClick}
-        isHalfRating={true}
         isReadOnly={true}
         initialRating={6.7 / 2}
         starClassName={styles.customStar}

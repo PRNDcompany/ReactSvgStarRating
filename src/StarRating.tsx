@@ -43,7 +43,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     if (initialRating !== 0) {
       setSelectedValue(initialRating);
     }
-  }, []);
+  }, [initialRating]);
 
   const handleStarMouseMove = (offsetX: number, index: number) => {
     if (isReadOnly) return;
@@ -88,25 +88,23 @@ const StarRating: React.FC<StarRatingProps> = ({
         const offset = isHover ? getHoverOffset(i) : getSelectedOffset(i);
         const filledColor = isHover ? hoverColor : activeColor;
         return (
-          <div style={{ marginRight: 4 }}>
-            <Star
-              key={i}
-              index={i}
-              size={size}
-              innerRadius={innerRadius}
-              outerRadius={outerRadius}
-              filledColor={filledColor}
-              emptyColor={emptyColor}
-              handleStarMouseMove={handleStarMouseMove}
-              handleMouseOut={handleMouseOut}
-              handleStarClick={(e) => handleStarClick(e, i)}
-              strokeLinejoin={roundedCorner ? "round" : "miter"}
-              strokeLinecap={roundedCorner ? "round" : "butt"}
-              className={starClassName}
-              isReadOnly={isReadOnly}
-              offset={offset}
-            />
-          </div>
+          <Star
+            key={i}
+            index={i}
+            size={size}
+            innerRadius={innerRadius}
+            outerRadius={outerRadius}
+            filledColor={filledColor}
+            emptyColor={emptyColor}
+            handleStarMouseMove={handleStarMouseMove}
+            handleMouseOut={handleMouseOut}
+            handleStarClick={(e) => handleStarClick(e, i)}
+            strokeLinejoin={roundedCorner ? "round" : "miter"}
+            strokeLinecap={roundedCorner ? "round" : "butt"}
+            className={starClassName}
+            isReadOnly={isReadOnly}
+            offset={offset}
+          />
         );
       })}
     </div>
