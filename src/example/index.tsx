@@ -15,7 +15,7 @@ const App = () => {
         handleOnClick={handleOnClick}
         isHalfRating={true}
         isReadOnly={true}
-        initialRating={4.5}
+        initialRating={6.7 / 2}
         starClassName={styles.customStar}
         containerClassName={styles.container}
       />
