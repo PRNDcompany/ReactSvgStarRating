@@ -43,7 +43,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     if (initialRating !== 0) {
       setSelectedValue(initialRating);
     }
-  }, []);
+  }, [initialRating]);
 
   const handleStarMouseMove = (offsetX: number, index: number) => {
     if (isReadOnly) return;
