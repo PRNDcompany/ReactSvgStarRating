@@ -39,6 +39,7 @@ const StarRating: React.FC<StarRatingProps> = ({
 }) => {
   const [hoverValue, setHoverValue] = useState(0);
   const [selectedValue, setSelectedValue] = useState(0);
+
   useEffect(() => {
     if (initialRating !== 0) {
       setSelectedValue(initialRating);
@@ -49,6 +50,7 @@ const StarRating: React.FC<StarRatingProps> = ({
     if (isReadOnly) return;
     setHoverValue(index + offsetX / size);
   };
+
   const handleMouseOut = () => {
     if (isReadOnly) return;
     setHoverValue(0);
@@ -56,7 +58,7 @@ const StarRating: React.FC<StarRatingProps> = ({
 
   const handleStarClick = (e: MouseEvent, index: number) => {
     if (isReadOnly) return;
-    setSelectedValue(e.nativeEvent.offsetX + index);
+    setSelectedValue(e.nativeEvent.offsetX / size + index);
   };
 
   const getHoverOffset = (index: number) => {
