@@ -4,7 +4,7 @@ A simple, highly customisable SVG star rating component for React
 
 ![example](https://res.cloudinary.com/daqk5u0dg/image/upload/v1563327344/example.png)
 
-[code sandbox](https://codesandbox.io/s/prod-brook-z84ko)
+[code sandbox](https://codesandbox.io/s/react-svg-star-rating-6nvsh?file=/src/App.tsx)
 ## Features:
 - SVG 
 - Customisable star shape.
@@ -48,6 +48,9 @@ You can then use the following markup in your project:
 | containerClassName?  | string | A css class name to style star container. | '' |
 | starClassName?  | string | A css class name to style each star. | '' |
 
+
+## version
+[v1](https://github.com/PRNDcompany/ReactSvgStarRating/tree/v1.1.5)
 
 ## License 
  ```code

@@ -101,10 +101,7 @@ const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <span
-      className={classNames(containerClassName)}
-      style={{ display: "flex" }}
-    >
+    <span className={classNames(containerClassName)}>
       {Array.from({ length: count }, (v, i) => {
         const isHover = getHoverOffsetPercent(i) > 0;
         const offset = isHover
