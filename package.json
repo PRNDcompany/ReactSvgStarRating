@@ -1,6 +1,6 @@
 {
   "name": "react-svg-star-rating",
-  "version": "2.1.0-alpha.1",
+  "version": "2.1.1",
   "description": "The React component for star rating",
   "main": "dist/index.js",
   "license": "MIT",

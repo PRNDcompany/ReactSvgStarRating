@@ -71,7 +71,7 @@ const StarRating: React.FC<StarRatingProps> = ({
       } else if (unit === "half") {
         handleOnClick(Math.ceil(value / 0.5) * 0.5);
       } else {
-        handleOnClick((Math.ceil(value / 0.1) * 0.1));
+        handleOnClick(Number((Math.ceil(value / 0.1) * 0.1).toFixed(1)));
       }
     }
   };
@@ -101,7 +101,10 @@ const StarRating: React.FC<StarRatingProps> = ({
   };
 
   return (
-    <div className={classNames(containerClassName)} style={{ display: "flex" }}>
+    <span
+      className={classNames(containerClassName)}
+      style={{ display: "flex" }}
+    >
       {Array.from({ length: count }, (v, i) => {
         const isHover = getHoverOffsetPercent(i) > 0;
         const offset = isHover
@@ -128,7 +131,7 @@ const StarRating: React.FC<StarRatingProps> = ({
           />
         );
       })}
-    </div>
+    </span>
   );
 };
 
