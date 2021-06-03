@@ -19,7 +19,6 @@ interface StarProps {
 }
 
 const NUM_POINT = 5;
-const STROKE_WIDTH = 10;
 const Star: React.FC<StarProps> = ({
   index,
   size,

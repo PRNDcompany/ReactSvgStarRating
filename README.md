@@ -33,6 +33,7 @@ You can then use the following markup in your project:
 
 | Prop  | Type | Description | Default |
 | ------------- |------------- | ------------- |-------------|
+| unit?  | 'full' &#124; 'half' &#124; 'float' | The unit of star | 'full'
 | size?  | number | The size of each star | 30
 | count?  | number | The number of star| 5 |
 | innerRadius?  | number | The inner radius of star, this is used to customize star shape. (max: 50) | 25 |
@@ -40,7 +41,6 @@ You can then use the following markup in your project:
 | activeColor?  | string | The color of the active portion of star.  | '#ffd055' |
 | hoverColor?  | string | The color of the hover potion of star.  | '#ffebb7' |
 | emptyColor?  | string | The color of empty star | '' |
-| isHalfRating?  | boolean | When set to true, the rating unit is changed to half star. | false |
 | roundedCorner?  | boolean | Whether or not to round the star's corner | true |
 | handleOnClick?  | (rating: number) => {} | Returns the rating value. | undefined |
 | isReadOnly?  | boolean | When set to true, the rating cannot to be edited. | false |

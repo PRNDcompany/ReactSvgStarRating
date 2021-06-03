@@ -3,25 +3,29 @@ import classNames from "classNames";
 import Star from "./Star";
 
 interface StarRatingProps {
+  unit?: "full" | "half" | "float";
   size?: number;
   count?: number;
+  innerRadius?: number;
+  outerRadius?: number;
   activeColor?: string;
   hoverColor?: string;
   emptyColor?: string;
-  innerRadius?: number;
-  outerRadius?: number;
-  isHalfRating?: boolean;
-  handleOnClick?: (rating: number) => void;
   roundedCorner?: boolean;
+  handleOnClick?: (rating: number) => void;
   isReadOnly?: boolean;
   initialRating?: number;
-  starClassName?: string;
   containerClassName?: string;
-  unit?: number;
+  starClassName?: string;
 }
 
 const DEFAULT_ACTIVE_COLOR = "#ffd055";
 const DEFAULT_HOVER_COLOR = "#ffebb7";
+const starUnitMap = {
+  full: 100,
+  half: 50,
+  float: 10,
+};
 const StarRating: React.FC<StarRatingProps> = ({
   size = 30,
   count = 5,
@@ -30,16 +34,17 @@ const StarRating: React.FC<StarRatingProps> = ({
   activeColor = DEFAULT_ACTIVE_COLOR,
   hoverColor = DEFAULT_HOVER_COLOR,
   roundedCorner = true,
-  handleOnClick = () => {},
+  handleOnClick,
   isReadOnly = false,
   initialRating = 0,
-  starClassName = "",
-  containerClassName = "",
+  starClassName,
+  containerClassName,
   emptyColor = "#ddd",
+  unit = "full",
 }) => {
   const [hoverValue, setHoverValue] = useState(0);
   const [selectedValue, setSelectedValue] = useState(0);
-
+  const unitValue = starUnitMap[unit];
   useEffect(() => {
     if (initialRating !== 0) {
       setSelectedValue(initialRating);
@@ -58,36 +63,50 @@ const StarRating: React.FC<StarRatingProps> = ({
 
   const handleStarClick = (e: MouseEvent, index: number) => {
     if (isReadOnly) return;
+    const value = e.nativeEvent.offsetX / size + index;
     setSelectedValue(e.nativeEvent.offsetX / size + index);
-  };
-
-  const getHoverOffset = (index: number) => {
-    const roundedValue = Math.floor(hoverValue);
-    if (index < roundedValue) {
-      return 100;
-    } else if (index > roundedValue) {
-      return 0;
-    } else {
-      return (hoverValue % 1) * 100;
+    if (handleOnClick) {
+      if (unit === "full") {
+        handleOnClick(Math.ceil(value));
+      } else if (unit === "half") {
+        handleOnClick(Math.ceil(value / 0.5) * 0.5);
+      } else {
+        handleOnClick((Math.ceil(value / 0.1) * 0.1));
+      }
     }
   };
 
-  const getSelectedOffset = (index: number) => {
-    const roundedValue = Math.floor(selectedValue);
-    if (index < roundedValue) {
+  const getHoverOffsetPercent = (starIndex: number) => {
+    const roundedValue = Math.floor(hoverValue);
+    if (starIndex < roundedValue) {
       return 100;
-    } else if (index > roundedValue) {
+    } else if (starIndex > roundedValue) {
       return 0;
     } else {
-      return (selectedValue % 1) * 100;
+      const currentStarOffsetPercentage = (hoverValue % 1) * 100;
+      return Math.ceil(currentStarOffsetPercentage / unitValue) * unitValue;
+    }
+  };
+
+  const getSelectedOffsetPercent = (starIndex: number) => {
+    const roundedSelectedValue = Math.floor(selectedValue);
+    if (starIndex < roundedSelectedValue) {
+      return 100;
+    } else if (starIndex > roundedSelectedValue) {
+      return 0;
+    } else {
+      const currentStarOffsetPercentage = (selectedValue % 1) * 100;
+      return Math.ceil(currentStarOffsetPercentage / unitValue) * unitValue;
     }
   };
 
   return (
     <div className={classNames(containerClassName)} style={{ display: "flex" }}>
       {Array.from({ length: count }, (v, i) => {
-        const isHover = getHoverOffset(i) > 0;
-        const offset = isHover ? getHoverOffset(i) : getSelectedOffset(i);
+        const isHover = getHoverOffsetPercent(i) > 0;
+        const offset = isHover
+          ? getHoverOffsetPercent(i)
+          : getSelectedOffsetPercent(i);
         const filledColor = isHover ? hoverColor : activeColor;
         return (
           <Star
